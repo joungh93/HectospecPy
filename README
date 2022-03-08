@@ -1,0 +1,37 @@
+Update 2022/03/03
+
+http://www.mmto.org/hsred-reduction-pipeline/
+http://mmto.org/~rcool/hsred/hsred_install.html
+https://www.sdss.org/dr15/software/products/
+
+$ cd ~/Downloads
+$ svn export https://svn.sdss.org/public/repo/sdss/idlutils/tags/v5_5_36 idlutils-v5_5_36
+$ svn export https://svn.sdss.org/public/repo/eboss/idlspec2d/tags/v5_9_1/ idlspec2d-v5_9_1
+$ git clone https://github.com/MMTObservatory/hsred.git
+
+In ~/.bashrc file, add the following lines.
+
+export IDL_DIR="/usr/local/harris/idl86"
+export IDL_PATH=+"$IDL_DIR/lib"
+export IDLUTILS_DIR="$HOME/Downloads/idlutils-v5_5_36"
+export IDLSPEC2D_DIR="$HOME/Downloads/idlspec2d-v5_9_1"
+export PATH="$IDLUTILS_DIR/bin:$IDLSPEC2D_DIR/bin:$PATH"
+export IDL_PATH=+"$IDLUTILS_DIR/goddard/pro/:$IDL_PATH"
+export IDL_PATH=+"$IDLUTILS_DIR/pro/:$IDL_PATH"
+export IDL_PATH=+"$IDLSPEC2D_DIR/pro/:$IDL_PATH"
+export HSRED_DIR="$HOME/Downloads/hsred"
+export DUST_DIR="$HSRED_DIR/dust"
+export IDL_PATH=+"$HSRED_DIR:$IDL_PATH"
+
+$ cd $IDLUTILS_DIR
+$ evilmake all
+$ cd $IDLSPEC2D_DIR
+$ evilmake all
+
+$ cp -rpv ../raw/[YYYY.MMDD] .
+$ cd [YYYY.MMDD]
+$ rm -rfv sflat.*_skycam.fits
+$ idl
+> hs_pipeline_wrap, /dostand
+
+
