@@ -100,12 +100,12 @@ iraf.blkavg(input="@bin1.list", output="@bin4.list", b1=4, b2=1, b3=1)
 
 # ----- Running IRAF/xcsao tasks ----- #
 iraf.xcsao(spectra="@bin1.list", templates="@templates.list",
-	       st_lambda=3800., end_lambda=5200.,
+	   st_lambda=3800., end_lambda=5200.,
            svel_corr="heliocentric", save_vel="yes")
 iraf.xcsao(spectra="@bin2.list", templates="@templates.list",
 	       st_lambda=3800., end_lambda=5200.,
            svel_corr="heliocentric", save_vel="yes")
 iraf.xcsao(spectra="@bin4.list", templates="@templates.list",
-	       st_lambda=3800., end_lambda=5200.,
+	   st_lambda=3800., end_lambda=5200.,
            svel_corr="heliocentric", save_vel="yes")
 
